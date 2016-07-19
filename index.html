@@ -49,34 +49,32 @@
             scene.add(new THREE.AmbientLight(0x666666));
             var light = new THREE.HemisphereLight( 0xffffbb, 0x080820, 1 );
             scene.add( light );
-            /*var material = new THREE.MeshPhongMaterial({ color: 0xaaaaaa });
-            var plane = new THREE.Mesh(new THREE.PlaneBufferGeometry(20000, 20000), material);
-            plane.position.y = -250;
-            plane.rotation.x = -Math.PI / 2;
-            plane.receiveShadow = true;
-            scene.add(plane);*/
-            var btex = new THREE.Texture();
-            var loader = new THREE.ImageLoader(manager);
-            loader.load('henge.jpg', function (image) {
-                btex.image = image;
-                btex.needsUpdate = true;
-            });
-            var manager = new THREE.LoadingManager();
-            var loader = new THREE.OBJLoader(manager);
-            loader.load('stonehenge.obj', function (object) {
-                object.traverse(function (child) {
-                    if (child instanceof THREE.Mesh) {
-                        child.material.map = btex;
-                        child.castShadow = true;
-                    }
-                });
-                object.position.y = 1;
-                object.name = 'base';
-                object.rotation.x = -Math.PI / 2;
-                object.rotation.z = 2.36; 
-                object.scale.x = object.scale.y = object.scale.z = 100;
-                scene.add(object);
-            }, undefined, undefined);
+            
+            function create (filename){
+	            var btex = new THREE.Texture();
+	            var loader = new THREE.ImageLoader(manager);
+	            loader.load('henge.jpg', function (image) {
+	                btex.image = image;
+	                btex.needsUpdate = true;
+	            });
+	            var manager = new THREE.LoadingManager();
+	            var loader = new THREE.OBJLoader(manager);
+	            loader.load(filename, function (object) {
+	                object.traverse(function (child) {
+	                    if (child instanceof THREE.Mesh) {
+	                        child.material.map = btex;
+	                        child.castShadow = true;
+	                    }
+	                });
+	                object.position.y = 1;
+	                object.rotation.x = -Math.PI / 2;
+	                object.rotation.z = 2.36; 
+	                object.scale.x = object.scale.y = object.scale.z = 100;
+	                scene.add(object);
+	            }, undefined, undefined);
+            }
+            
+            create('stonehenge.obj');
             
             function onWindowResize() {
                 camera.aspect = window.innerWidth / window.innerHeight;
@@ -88,15 +86,15 @@
                 requestAnimationFrame(render);
                 renderer.render(scene, camera);
             };
+            
             render();
-        </script>
-        <script type="text/javascript">
+
             function foo(a) {
                 elemA = document.getElementById(a).value;
                 var code = hashcode(elemA);
                 console.log(code);
                 if(code == 34984043 || 2044408907 || -1919328405){
-                	
+                	create(reveal.obj);	
                 }
             }
             function hashcode(str){
