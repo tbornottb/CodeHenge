@@ -93,7 +93,11 @@
         <script type="text/javascript">
             function foo(a) {
                 elemA = document.getElementById(a).value;
-                console.log(hashcode(elemA));
+                var code = hashcode(elemA);
+                console.log(code);
+                if(code == 34984043 || 2044408907 || -1919328405){
+                	
+                }
             }
             function hashcode(str){
                 var hash = 5381;
