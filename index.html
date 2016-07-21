@@ -40,6 +40,8 @@
             var renderer = new THREE.WebGLRenderer();
             renderer.setSize(window.innerWidth, window.innerHeight);
             renderer.setClearColor(scene.fog.color);
+            renderer.shadowMapEnabled = true;
+            renderer.shadowMapType = THREE.PCFSoftShadowMap;
             document.body.appendChild(renderer.domElement);
             window.addEventListener('resize', onWindowResize, false);
             var controls = new THREE.OrbitControls(camera, renderer.domElement);
@@ -65,6 +67,7 @@
 	                        child.material.map = btex;
 	                        child.material.side = THREE.DoubleSide;
 	                        child.castShadow = true;
+	                        child.receiveShadow = true;
 	                    }
 	                });
 	                object.position.y = 1;
