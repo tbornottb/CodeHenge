@@ -51,26 +51,26 @@
             scene.add(new THREE.AmbientLight(0x666666));
             var light = new THREE.HemisphereLight( 0xffffbb, 0x080820, 1 );
             scene.add( light );
-    		dirLight = new THREE.DirectionalLight( 0xffffff, 1 );
-		dirLight.color.setHSL( 0.1, 1, 0.95 );
-		dirLight.position.set( -1, 1.75, 1 );
-		dirLight.position.multiplyScalar( 50 );
-		scene.add( dirLight );
+    		light = new THREE.DirectionalLight( 0xdfebff, 1.75 );
+		light.position.set( 50, 200, 100 );
+		light.position.multiplyScalar( 1.3 );
 	
-		dirLight.castShadow = true;
+		light.castShadow = true;
 	
-		dirLight.shadowMapWidth = 2048;
-		dirLight.shadowMapHeight = 2048;
+		light.shadow.mapSize.width = 1024;
+		light.shadow.mapSize.height = 1024;
 	
-		var d = 50;
+		var d = 300;
 	
-		dirLight.shadowCameraLeft = -d;
-		dirLight.shadowCameraRight = d;
-		dirLight.shadowCameraTop = d;
-		dirLight.shadowCameraBottom = -d;
+		light.shadow.camera.left = - d;
+		light.shadow.camera.right = d;
+		light.shadow.camera.top = d;
+		light.shadow.camera.bottom = - d;
 	
-		dirLight.shadowCameraFar = 3500;
-		dirLight.shadowBias = -0.0001;
+		light.shadow.camera.far = 1000;
+	
+		scene.add( light );
+
             
             function create (filename){
 	            var btex = new THREE.Texture();
