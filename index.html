@@ -26,6 +26,13 @@
                 <input type="button" value="Submit" onclick="foo('a');" />
             </form>
         </div>
+        <div id="info2">CODEHENGE<br/>
+		enter the word hidden in the stones<br/>
+            <form onSubmit="return false;">
+                <input type="text" id="a" value="" style="width:9em"><br>
+                <input type="button" value="Submit" onclick="foo('a');" />
+            </form>
+        $('#info2').hide();
         <script src="three.min.js"></script>
         <script src="OrbitControls.js"></script>
         <script src="OBJLoader.js"></script>
@@ -121,18 +128,13 @@
                 if(onedone){
                 	if(code === 34984043 || code === 2044408907 || code === -1919328405){
 	                	create('reveal.obj');
-	                	document.getElementById("info").innerHTML = "congratulations";
-	                	document.getElementById("input").innerHTML = "claim your reward";
+	                	document.getElementById("info").innerHTML = "congratulations <br/> claim your reward";
 	                }	
                 }else{
 	                if(code === 34984043 || code === 2044408907 || code === -1919328405){
-	                	create('reveal.obj');
-	                	document.getElementById("info").innerHTML = ">CODEHENGE<br/>
-		enter the word hidden in the stones<br/>
-            <form onSubmit="return false;">
-                <input type="text" id="a" value="" style="width:9em"><br>
-                <input type="button" value="Submit" onclick="foo('a');" />
-            </form>";
+	                	//create('druids.obj');
+	                	$('#info').hide();
+	                	$('#info2').show();
 	                }
                 }
             }
