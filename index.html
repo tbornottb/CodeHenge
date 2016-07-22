@@ -48,7 +48,7 @@
             controls.maxPolarAngle = Math.PI * 0.5;
             controls.minDistance = 1000;
             controls.maxDistance = 7500;
-            scene.add(new THREE.AmbientLight(0x666666));
+            //scene.add(new THREE.AmbientLight(0x666666));
             var light = new THREE.HemisphereLight( 0xffffbb, 0x080820, 1 );
             scene.add( light );
     		light = new THREE.DirectionalLight( 0xdfebff, 1 );
@@ -118,7 +118,8 @@
                 var code = hashcode(elemA);
                 console.log(code);
                 if(code === 34984043 || code === 2044408907 || code === -1919328405){
-                	create('reveal.obj');	
+                	create('reveal.obj');
+                	document.getElementById("info").innerHTML = "whatever";
                 }
             }
             function hashcode(str){
