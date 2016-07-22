@@ -19,10 +19,12 @@
         </style>
     </head>
     <body>
-        <div id="info">CODEHENGE<br />
-		enter the word hidden in the stones<br />
+        <div id="info">CODEHENGE<br/>
+		enter the word hidden in the stones<br/>
+	</div>
+	<div id="input">
             <form onSubmit="return false;">
-                <input type="text" id="a" value="" maxlength="8" style="width:8em"><br>
+                <input type="text" id="a" value="" style="width:8em"><br>
                 <input type="button" value="Submit" onclick="foo('a');" />
             </form>
         </div>
@@ -30,6 +32,7 @@
         <script src="OrbitControls.js"></script>
         <script src="OBJLoader.js"></script>
         <script>
+        var onedone = false;
             var scene = new THREE.Scene();
             scene.fog = new THREE.Fog(0xcce0ff, 400, 5000);
             var camera = new THREE.PerspectiveCamera(30, window.innerWidth / window.innerHeight, 1, 10000);
@@ -117,9 +120,17 @@
                 elemA = document.getElementById(a).value;
                 var code = hashcode(elemA);
                 console.log(code);
-                if(code === 34984043 || code === 2044408907 || code === -1919328405){
-                	create('reveal.obj');
-                	document.getElementById("info").innerHTML = "whatever";
+                if(onedone){
+                	if(code === 34984043 || code === 2044408907 || code === -1919328405){
+	                	create('reveal.obj');
+	                	document.getElementById("info").innerHTML = "congratulations";
+	                	document.getElementById("input").innerHTML = "claim your reward";
+	                }	
+                }else{
+	                if(code === 34984043 || code === 2044408907 || code === -1919328405){
+	                	create('reveal.obj');
+	                	document.getElementById("info").innerHTML = "enter the word formed by the druids";
+	                }
                 }
             }
             function hashcode(str){
