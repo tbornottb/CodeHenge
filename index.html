@@ -16,20 +16,11 @@
                 width: 100%;
                 text-align: center;
             	}
-            	#input {
-                font-family: 'Covered By Your Grace', serif;        
-                position: absolute;
-                padding: 10px;
-                width: 100%;
-                text-align: center;
-            	}
         </style>
     </head>
     <body>
         <div id="info">CODEHENGE<br/>
 		enter the word hidden in the stones<br/>
-	</div>
-	<div id="input">
             <form onSubmit="return false;">
                 <input type="text" id="a" value="" style="width:8em"><br>
                 <input type="button" value="Submit" onclick="foo('a');" />
@@ -136,7 +127,12 @@
                 }else{
 	                if(code === 34984043 || code === 2044408907 || code === -1919328405){
 	                	create('reveal.obj');
-	                	document.getElementById("info").innerHTML = "enter the word formed by the druids";
+	                	document.getElementById("info").innerHTML = ">CODEHENGE<br/>
+		enter the word hidden in the stones<br/>
+            <form onSubmit="return false;">
+                <input type="text" id="a" value="" style="width:9em"><br>
+                <input type="button" value="Submit" onclick="foo('a');" />
+            </form>";
 	                }
                 }
             }
