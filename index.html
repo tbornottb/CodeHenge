@@ -13,12 +13,14 @@
                 font-family: 'Covered By Your Grace', serif;        
                 position: absolute;
                 padding: 10px;
+                width: 100%;
                 text-align: center;
                 }
                 #info2 {
                 font-family: 'Covered By Your Grace', serif;        
                 position: absolute;
                 padding: 10px;
+                width: 100%;
                 text-align: center;
                 }
         </style>
@@ -27,14 +29,14 @@
         <div id="info">CODEHENGE<br />
 		enter the word hidden in the stones<br />
             <form onsubmit="return false;">
-                <input type="text" id="a" value="" style="width:8em"><br>
+                <input type="text" id="a" value="" maxlength="8" style="width:1em"><br>
                 <input type="button" value="Submit" onclick="foo('a');" />
             </form>
         </div>
         <div id="info2">CODEHENGE<br />
 		enter the word formed by the druids<br />
             <form onsubmit="return false;">
-                <input type="text" id="b" value="" style="width:9em"><br>
+                <input type="text" id="b" value="" maxlength="9" style="width:9em"><br>
                 <input type="button" value="Submit" onclick="foo('b');" />
             </form>
         </div>
