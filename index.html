@@ -13,31 +13,29 @@
                 font-family: 'Covered By Your Grace', serif;        
                 position: absolute;
                 padding: 10px;
-                width: 100%;
                 text-align: center;
-            	}
-            	#info2 {
+                }
+                #info2 {
                 font-family: 'Covered By Your Grace', serif;        
                 position: absolute;
                 padding: 10px;
-                width: 100%;
                 text-align: center;
-            	}
+                }
         </style>
     </head>
     <body>
-        <div id="info">CODEHENGE<br/>
-		enter the word hidden in the stones<br/>
-            <form onSubmit="return false;">
+        <div id="info">CODEHENGE<br />
+		enter the word hidden in the stones<br />
+            <form onsubmit="return false;">
                 <input type="text" id="a" value="" style="width:8em"><br>
                 <input type="button" value="Submit" onclick="foo('a');" />
             </form>
         </div>
-        <div id="info2">CODEHENGE<br/>
-		enter the word formed by the druids<br/>
-            <form onSubmit="return false;">
-                <input type="text" id="a" value="" style="width:9em"><br>
-                <input type="button" value="Submit" onclick="foo('a');" />
+        <div id="info2">CODEHENGE<br />
+		enter the word formed by the druids<br />
+            <form onsubmit="return false;">
+                <input type="text" id="b" value="" style="width:9em"><br>
+                <input type="button" value="Submit" onclick="foo('b');" />
             </form>
         </div>
         <script src="three.min.js"></script>
@@ -45,8 +43,8 @@
         <script src="OBJLoader.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script>
-        var onedone = false;
-        $('#info2').hide();
+            var onedone = false;
+            $('#info2').hide();
             var scene = new THREE.Scene();
             scene.fog = new THREE.Fog(0xcce0ff, 400, 5000);
             var camera = new THREE.PerspectiveCamera(30, window.innerWidth / window.innerHeight, 1, 10000);
@@ -65,54 +63,45 @@
             controls.maxPolarAngle = Math.PI * 0.5;
             controls.minDistance = 1000;
             controls.maxDistance = 7500;
-            //scene.add(new THREE.AmbientLight(0x666666));
             var light = new THREE.HemisphereLight( 0xffffbb, 0x080820, .4 );
             scene.add( light );
-    		light = new THREE.DirectionalLight( 0xdfebff, 1 );
-		light.position.set( 50, 200, 100 );
-		light.position.multiplyScalar( 1.3 );
-	
-		light.castShadow = true;
-	
-		light.shadow.mapSize.width = 1024;
-		light.shadow.mapSize.height = 1024;
-	
-		var d = 1000;
-	
-		light.shadow.camera.left = - d;
-		light.shadow.camera.right = d;
-		light.shadow.camera.top = d;
-		light.shadow.camera.bottom = - d;
-	
-		light.shadow.camera.far = 1000;
-	
-		scene.add( light );
-
-            
+            light = new THREE.DirectionalLight( 0xdfebff, 1 );
+            light.position.set( 50, 200, 100 );
+            light.position.multiplyScalar( 1.3 );
+            light.castShadow = true;
+            light.shadow.mapSize.width = 1024;
+            light.shadow.mapSize.height = 1024;
+            var d = 1000;
+            light.shadow.camera.left = - d;
+            light.shadow.camera.right = d;
+            light.shadow.camera.top = d;
+            light.shadow.camera.bottom = - d;
+            light.shadow.camera.far = 1000;
+            scene.add( light );
             function create (filename){
-	            var btex = new THREE.Texture();
-	            var loader = new THREE.ImageLoader(manager);
-	            loader.load('henge.jpg', function (image) {
-	                btex.image = image;
-	                btex.needsUpdate = true;
-	            });
-	            var manager = new THREE.LoadingManager();
-	            var loader = new THREE.OBJLoader(manager);
-	            loader.load(filename, function (object) {
-	                object.traverse(function (child) {
-	                    if (child instanceof THREE.Mesh) {
-	                        child.material.map = btex;
-	                        child.material.side = THREE.DoubleSide;
-	                        child.castShadow = true;
-	                        child.receiveShadow = true;
-	                    }
-	                });
-	                object.position.y = 1;
-	                object.rotation.x = -Math.PI / 2;
-	                object.rotation.z = 2.36; 
-	                object.scale.x = object.scale.y = object.scale.z = 100;
-	                scene.add(object);
-	            }, undefined, undefined);
+                var btex = new THREE.Texture();
+                var loader = new THREE.ImageLoader(manager);
+                loader.load('hengemap.jpg', function (image) {
+                    btex.image = image;
+                    btex.needsUpdate = true;
+                });
+                var manager = new THREE.LoadingManager();
+                var loader = new THREE.OBJLoader(manager);
+                loader.load(filename, function (object) {
+                    object.traverse(function (child) {
+                        if (child instanceof THREE.Mesh) {
+                            child.material.map = btex;
+                            child.material.side = THREE.DoubleSide;
+                            child.castShadow = true;
+                            child.receiveShadow = true;
+                        }
+                    });
+                    object.position.y = 1;
+                    object.rotation.x = -Math.PI / 2;
+                    object.rotation.z = 2.36; 
+                    object.scale.x = object.scale.y = object.scale.z = 100;
+                    scene.add(object);
+                }, undefined, undefined);
             }
             
             create('stonehenge.obj');
@@ -129,22 +118,22 @@
             };
             
             render();
-
+            
             function foo(a) {
                 elemA = document.getElementById(a).value;
                 var code = hashcode(elemA);
                 console.log(code);
                 if(onedone){
-                	if(code === 34984043 || code === 2044408907 || code === -1919328405){
-	                	create('reveal.obj');
-	                	document.getElementById("info2").innerHTML = "congratulations <br/> claim your reward";
-	                }	
+                    if(code === 151955800 || code === 2492610648 || code === -1734555272){
+                        create('reveal.obj');
+                        document.getElementById("info2").innerHTML = "congratulations <br/> claim your reward, a runic word";
+                    }	
                 }else{
-	                if(code === 34984043 || code === 2044408907 || code === -1919328405){
-	                	//create('druids.obj');
-	                	$('#info').hide();
-	                	$('#info2').show();
-	                }
+                    if(code === 34984043 || code === 2044408907 || code === -1919328405){
+                        create('druids.obj');
+                        $('#info').hide();
+                        $('#info2').show();
+                    }
                 }
             }
             function hashcode(str){
