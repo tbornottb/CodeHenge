@@ -5,7 +5,12 @@
         <title>CODEHENGE</title>
         <link href="https://fonts.googleapis.com/css?family=Covered+By+Your+Grace" rel="stylesheet" type="text/css">
         <style>
-            body, input { margin: 0; 
+            body{ margin: 0; 
+                padding:5px;
+                font-family: 'Covered By Your Grace', serif;
+            }
+            input[type="text"]
+            {
                 padding:5px;
                 font-size:18px;
                 font-family: 'Covered By Your Grace', serif;
@@ -33,7 +38,7 @@
         <div id="info">CODEHENGE<br />
 		enter the word hidden in the stones<br />
             <form onsubmit="return false;">
-                <input type="text" id="a" value="" maxlength="8" size:8><br>
+                <input type="text" id="a" value="" maxlength="8" style="width:8em"><br>
                 <input type="button" value="Submit" onclick="foo('a');" />
             </form>
         </div>
