@@ -115,7 +115,6 @@
                 loader.load(filename, function (object) {
                     object.traverse(function (child) {
                         if (child instanceof THREE.Mesh) {
-                            child.name = filename;
                             child.material.map = btex;
                             child.material.side = THREE.DoubleSide;
                             child.castShadow = true;
@@ -126,6 +125,7 @@
                     object.rotation.x = -Math.PI / 2;
                     object.rotation.z = 2.25;
                     object.scale.x = object.scale.y = object.scale.z = 100;
+                    object.name = filename;
                     scene.add(object);
                     scene.remove(object.name);
                 }, undefined, undefined);
