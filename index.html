@@ -128,6 +128,12 @@
                     scene.add(object);
                 }, undefined, undefined);
             }
+            function removeEntity(object) {
+                var selectedObject = scene.getObjectByName(object.name);
+                scene.remove(selectedObject);
+                animate();
+            }
+
 
             create('stonehenge.obj');
             create('banners.obj');
@@ -157,6 +163,7 @@
                 } else {
                     if (code === 34984043 || code === 2044408907 || code === -1919328405) {
                         create('druids.obj');
+                        removeEntity(banners.obj);
                         $('#info').hide();
                         $('#info2').show();
                         onedone = true;
