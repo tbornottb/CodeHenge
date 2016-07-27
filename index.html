@@ -132,7 +132,7 @@
             function removeEntity(object) {
                 var selectedObject = scene.getObjectByName(object.name);
                 scene.remove(selectedObject);
-                animate();
+                //animate();
             }
 
 
@@ -161,6 +161,9 @@
                         create('reveal.obj');
                         document.getElementById("info2").innerHTML = "congratulations <br/> claim your reward, a runic word";
                     }
+                    else{
+                        $('#b').val('');
+                    }
                 } else {
                     if (code === 34984043 || code === 2044408907 || code === -1919328405) {
                         create('druids.obj');
@@ -168,6 +171,9 @@
                         $('#info').hide();
                         $('#info2').show();
                         onedone = true;
+                    }
+                    else{
+                        $('#a').val('');
                     }
                 }
             }
