@@ -127,16 +127,17 @@
                     object.scale.x = object.scale.y = object.scale.z = 100;
                     object.name = filename;
                     scene.add(object);
-                    scene.remove(scene.getObjectByName(object.name));
+                    //scene.remove(scene.getObjectByName(object.name));
                 }, undefined, undefined);
             }
             function removeEntity(object) {
-                var selectedObject = scene.getObjectByName(object.name);
+                scene.remove(scene.getObjectByName(object.name));
+                //var selectedObject = scene.getObjectByName(object.name);
                 //selectedObject.visible = false;
-                scene.remove(selectedObject);
+                //scene.remove(selectedObject);
                 //controls.update();
                 //scene.update();
-                render();
+                //render();
             }
 
             create('stonehenge.obj');
@@ -170,7 +171,7 @@
                 } else {
                     if (code === 34984043 || code === 2044408907 || code === -1919328405) {
                         create('druids.obj');
-                        removeEntity("banners.obj");
+                        removeEntity('banners.obj');
                         $('#info').hide();
                         $('#info2').show();
                         onedone = true;
