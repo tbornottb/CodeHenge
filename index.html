@@ -124,7 +124,7 @@
                     });
                     object.position.y = 1;
                     object.rotation.x = -Math.PI / 2;
-                    object.rotation.z = 2.3;
+                    object.rotation.z = 2.25;
                     object.scale.x = object.scale.y = object.scale.z = 100;
                     scene.add(object);
                 }, undefined, undefined);
@@ -140,7 +140,7 @@
             function removeAll() { }
             for (i = scene.children.length - 1; i >= 0; i--) {
                 child = scene.children[i];
-
+                console.log("ye");
                 if (child !== plane && child !== camera) { // plane & camera are stored earlier
                     scene.remove(child);
                 }
