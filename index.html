@@ -147,6 +147,8 @@
             var render = function () {
                 requestAnimationFrame(render);
                 renderer.render(scene, camera);
+                controls.update();
+                //scene.update();
             };
 
             render();
@@ -160,7 +162,7 @@
                         removeEntity("druids.obj");
                         document.getElementById("info2").innerHTML = "congratulations <br/> claim your reward, a runic word";
                     }
-                    else{
+                    else {
                         $('#b').val('');
                     }
                 } else {
@@ -171,7 +173,7 @@
                         $('#info2').show();
                         onedone = true;
                     }
-                    else{
+                    else {
                         $('#a').val('');
                     }
                 }
