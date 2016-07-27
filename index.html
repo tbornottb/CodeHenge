@@ -115,6 +115,7 @@
                 loader.load(filename, function (object) {
                     object.traverse(function (child) {
                         if (child instanceof THREE.Mesh) {
+                            child.name = filename;
                             child.material.map = btex;
                             child.material.side = THREE.DoubleSide;
                             child.castShadow = true;
@@ -125,18 +126,16 @@
                     object.rotation.x = -Math.PI / 2;
                     object.rotation.z = 2.2;
                     object.scale.x = object.scale.y = object.scale.z = 100;
-                    object.name = filename;
-                    object.material.visible = false;
                     scene.add(object);
                 }, undefined, undefined);
             }
             function removeEntity(object) {
                 var selectedObject = scene.getObjectByName(object.name);
                 selectedObject.visible = false;
-                //scene.remove(selectedObject);
+                scene.remove(selectedObject);
                 //controls.update();
                 //scene.update();
-                //render();
+                render();
             }
 
 
