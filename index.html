@@ -125,19 +125,8 @@
                     object.rotation.x = -Math.PI / 2;
                     object.rotation.z = 2.25;
                     object.scale.x = object.scale.y = object.scale.z = 100;
-                    object.name = filename;
                     scene.add(object);
-                    //scene.remove(scene.getObjectByName(object.name));
                 }, undefined, undefined);
-            }
-            function removeEntity(object) {
-                scene.remove(scene.getObjectByName(object.name));
-                //var selectedObject = scene.getObjectByName(object.name);
-                //selectedObject.visible = false;
-                //scene.remove(selectedObject);
-                //controls.update();
-                //scene.update();
-                //render();
             }
 
             create('stonehenge.obj');
@@ -162,7 +151,6 @@
                 if (onedone) {
                     if (code === 151955800 || code === 2492610648 || code === -1734555272) {
                         create('reveal.obj');
-                        removeEntity("druids.obj");
                         document.getElementById("info2").innerHTML = "congratulations <br/> claim your reward, a runic word";
                     }
                     else {
@@ -171,7 +159,6 @@
                 } else {
                     if (code === 34984043 || code === 2044408907 || code === -1919328405) {
                         create('druids.obj');
-                        removeEntity('banners.obj');
                         $('#info').hide();
                         $('#info2').show();
                         onedone = true;
