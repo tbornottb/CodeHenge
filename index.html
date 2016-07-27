@@ -127,7 +127,7 @@
                     object.scale.x = object.scale.y = object.scale.z = 100;
                     object.name = filename;
                     scene.add(object);
-                    scene.remove(object.name);
+                    scene.remove(scene.getObjectByName(object.name));
                 }, undefined, undefined);
             }
             function removeEntity(object) {
