@@ -124,7 +124,7 @@
                     });
                     object.position.y = 1;
                     object.rotation.x = -Math.PI / 2;
-                    object.rotation.z = 2.2;
+                    object.rotation.z = 2.3;
                     object.scale.x = object.scale.y = object.scale.z = 100;
                     scene.add(object);
                 }, undefined, undefined);
@@ -137,6 +137,16 @@
                 //scene.update();
                 render();
             }
+            function removeAll() { }
+            for (i = scene.children.length - 1; i >= 0; i--) {
+                child = scene.children[i];
+
+                if (child !== plane && child !== camera) { // plane & camera are stored earlier
+                    scene.remove(child);
+                }
+            }
+
+
 
 
             create('stonehenge.obj');
@@ -171,6 +181,7 @@
                     if (code === 34984043 || code === 2044408907 || code === -1919328405) {
                         create('druids.obj');
                         removeEntity("banners.obj");
+                        removeAll();
                         $('#info').hide();
                         $('#info2').show();
                         onedone = true;
