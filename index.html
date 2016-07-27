@@ -125,6 +125,7 @@
                     object.rotation.x = -Math.PI / 2;
                     object.rotation.z = 2.4;
                     object.scale.x = object.scale.y = object.scale.z = 100;
+                    object.name = filename;
                     scene.add(object);
                 }, undefined, undefined);
             }
@@ -163,7 +164,7 @@
                 } else {
                     if (code === 34984043 || code === 2044408907 || code === -1919328405) {
                         create('druids.obj');
-                        removeEntity('banners.obj');
+                        removeEntity("banners.obj");
                         $('#info').hide();
                         $('#info2').show();
                         onedone = true;
