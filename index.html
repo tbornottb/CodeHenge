@@ -131,10 +131,11 @@
             }
             function removeEntity(object) {
                 var selectedObject = scene.getObjectByName(object.name);
-                scene.remove(selectedObject);
-                controls.update();
+                selectedObject.visible = false;
+                //scene.remove(selectedObject);
+                //controls.update();
                 //scene.update();
-                render();
+                //render();
             }
 
 
