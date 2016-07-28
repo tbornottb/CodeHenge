@@ -132,6 +132,32 @@
             create('stonehenge.obj');
             create('banners.obj');
 
+            var pass = document.createElement('pass');
+            var source = document.createElement('source');
+            source.src = 'pass.wav';
+            pass.appendChild(source);
+
+            var fail = document.createElement('fail');
+            var source = document.createElement('source');
+            source.src = 'fail.wav';
+            fail.appendChild(source);
+
+            var listener = new THREE.AudioListener();
+		    camera.add( listener );
+            var sound4 = new THREE.Audio( listener );
+			audioLoader.load( 'ambience.mp3', function( buffer ) {
+				sound4.setBuffer( buffer );
+				sound4.setLoop(true);
+				sound4.setVolume(0.5);
+				sound4.play();
+			},
+            function ( xhr ) {
+		        console.log( (xhr.loaded / xhr.total * 100) + '% loaded' );
+	        },
+	        function ( xhr ) {
+		        console.log( 'An error happened' );
+	        });
+
             function onWindowResize() {
                 camera.aspect = window.innerWidth / window.innerHeight;
                 camera.updateProjectionMatrix();
