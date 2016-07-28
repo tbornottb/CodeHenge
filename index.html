@@ -129,18 +129,11 @@
                 }, undefined, undefined);
             }
 
+            var pass = new Audio("pass.wav");
+            var fail = new Audio("fail.wav");
+
             create('stonehenge.obj');
             create('banners.obj');
-
-            var pass = document.createElement('pass');
-            var source = document.createElement('source');
-            source.src = 'pass.wav';
-            pass.appendChild(source);
-
-            var fail = document.createElement('fail');
-            var source = document.createElement('source');
-            source.src = 'fail.wav';
-            fail.appendChild(source);
 
             var audioLoader = new THREE.AudioLoader();
             var listener = new THREE.AudioListener();
@@ -178,14 +171,12 @@
                 if (onedone) {
                     if (code === 151955800 || code === 2492610648 || code === -1734555272) {
                         create('reveal.obj');
-                        var snd = new Audio("pass.wav");
-                        snd.play();
+                        pass.play();
                         document.getElementById("info2").innerHTML = "congratulations <br/> claim your reward, a runic word";
                     }
                     else {
                         $('#b').val('');
-                        var snd = new Audio("fail.wav");
-                        snd.play();
+                        fail.play();
                     }
                 } else {
                     if (code === 34984043 || code === 2044408907 || code === -1919328405) {
