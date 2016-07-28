@@ -178,12 +178,14 @@
                 if (onedone) {
                     if (code === 151955800 || code === 2492610648 || code === -1734555272) {
                         create('reveal.obj');
-                        pass.play();
+                        var snd = new Audio("pass.wav");
+                        snd.play();
                         document.getElementById("info2").innerHTML = "congratulations <br/> claim your reward, a runic word";
                     }
                     else {
                         $('#b').val('');
-                        fail.play();
+                        var snd = new Audio("fail.wav");
+                        snd.play();
                     }
                 } else {
                     if (code === 34984043 || code === 2044408907 || code === -1919328405) {
