@@ -144,20 +144,20 @@
 
             var audioLoader = new THREE.AudioLoader();
             var listener = new THREE.AudioListener();
-		    camera.add( listener );
-            var sound4 = new THREE.Audio( listener );
-			audioLoader.load( 'ambience.mp3', function( buffer ) {
-				sound4.setBuffer( buffer );
-				sound4.setLoop(true);
-				sound4.setVolume(0.5);
-				sound4.play();
-			},
-            function ( xhr ) {
-		        console.log( (xhr.loaded / xhr.total * 100) + '% loaded' );
-	        },
-	        function ( xhr ) {
-		        console.log( 'An error happened' );
-	        });
+            camera.add(listener);
+            var sound4 = new THREE.Audio(listener);
+            audioLoader.load('ambience.mp3', function (buffer) {
+                sound4.setBuffer(buffer);
+                sound4.setLoop(true);
+                sound4.setVolume(0.5);
+                sound4.play();
+            },
+            function (xhr) {
+                console.log((xhr.loaded / xhr.total * 100) + '% loaded');
+            },
+            function (xhr) {
+                console.log('An error happened');
+            });
 
             function onWindowResize() {
                 camera.aspect = window.innerWidth / window.innerHeight;
@@ -178,10 +178,12 @@
                 if (onedone) {
                     if (code === 151955800 || code === 2492610648 || code === -1734555272) {
                         create('reveal.obj');
+                        pass.play();
                         document.getElementById("info2").innerHTML = "congratulations <br/> claim your reward, a runic word";
                     }
                     else {
                         $('#b').val('');
+                        fail.play();
                     }
                 } else {
                     if (code === 34984043 || code === 2044408907 || code === -1919328405) {
@@ -189,9 +191,11 @@
                         $('#info').hide();
                         $('#info2').show();
                         onedone = true;
+                        pass.play();
                     }
                     else {
                         $('#a').val('');
+                        fail.play();
                     }
                 }
             }
