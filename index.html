@@ -57,7 +57,7 @@
             </form>
         </div>
         <div id="info2">
-		well done <br/> now enter the word formed by the druids<br />
+		well done <br /> now enter the word formed by the druids<br />
             <form onsubmit="return false;">
                 <input type="text" id="b" value="" maxlength="9"><br>
                 <input type="button" value="Submit" onclick="foo('b');" />
@@ -128,13 +128,10 @@
                     scene.add(object);
                 }, undefined, undefined);
             }
-
-            var pass = new Audio("pass.wav");
-            var fail = new Audio("fail.wav");
-
+            
             create('stonehenge.obj');
             create('banners.obj');
-
+            
             var audioLoader = new THREE.AudioLoader();
             var listener = new THREE.AudioListener();
             camera.add(listener);
@@ -151,31 +148,33 @@
             function (xhr) {
                 console.log('An error happened');
             });
-
+            
             function onWindowResize() {
                 camera.aspect = window.innerWidth / window.innerHeight;
                 camera.updateProjectionMatrix();
                 renderer.setSize(window.innerWidth, window.innerHeight);
             }
-
+            
             var render = function () {
                 requestAnimationFrame(render);
                 renderer.render(scene, camera);
             };
-
+            
             render();
-
+            
             function foo(a) {
                 elemA = document.getElementById(a).value;
                 var code = hashcode(elemA);
                 if (onedone) {
                     if (code === 151955800 || code === 2492610648 || code === -1734555272) {
                         create('reveal.obj');
+                        var pass = new Audio("pass.wav");
                         pass.play();
                         document.getElementById("info2").innerHTML = "congratulations <br/> claim your reward, a runic word";
                     }
                     else {
                         $('#b').val('');
+                        var fail = new Audio("fail.wav");
                         fail.play();
                     }
                 } else {
@@ -184,10 +183,12 @@
                         $('#info').hide();
                         $('#info2').show();
                         onedone = true;
+                        var pass = new Audio("pass.wav");
                         pass.play();
                     }
                     else {
                         $('#a').val('');
+                        var fail = new Audio("fail.wav");
                         fail.play();
                     }
                 }
