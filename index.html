@@ -142,6 +142,7 @@
             source.src = 'fail.wav';
             fail.appendChild(source);
 
+            var audioLoader = new THREE.AudioLoader();
             var listener = new THREE.AudioListener();
 		    camera.add( listener );
             var sound4 = new THREE.Audio( listener );
