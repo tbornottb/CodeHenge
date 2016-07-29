@@ -120,6 +120,8 @@
                             child.material.side = THREE.DoubleSide;
                             child.castShadow = true;
                             child.receiveShadow = true;
+                            child.material.visible = false;
+                            child.material.needsUpdate = true;
                         }
                     });
                     object.position.y = 1;
@@ -138,16 +140,16 @@
             camera.add(listener);
             /*var sound4 = new THREE.Audio(listener);
             audioLoader.load('ambience.mp3', function (buffer) {
-                sound4.setBuffer(buffer);
-                sound4.setLoop(true);
-                sound4.setVolume(0.5);
-                sound4.play();
+            sound4.setBuffer(buffer);
+            sound4.setLoop(true);
+            sound4.setVolume(0.5);
+            sound4.play();
             },
             function (xhr) {
-                console.log((xhr.loaded / xhr.total * 100) + '% loaded');
+            console.log((xhr.loaded / xhr.total * 100) + '% loaded');
             },
             function (xhr) {
-                console.log('An error happened');
+            console.log('An error happened');
             });*/
 
             function onWindowResize() {
@@ -169,7 +171,7 @@
                 console.log(code);
                 console.log(typeof code);
                 if (onedone) {
-                    if (code === 0x515a81fa097943dc4f01e32fe178e066b297ee5a00b44fea8c6f7a1cee3b65c140b52e7c0642e82f42e0ebfa17aca7f136aaaccc59ec47f1a62522b680f884bf) {
+                    if (code === 0x997efda565289ee6a5a39ecac6a2014632550dcd5dddbc916090447bd5543a6265bc368d8fd58193063f40653a4fb3fd3ace64ed935d2a8eca52f8cd63151190) {
                         create('reveal.obj');
                         var pass = new Audio("pass.wav");
                         pass.play();
@@ -181,7 +183,7 @@
                         fail.play();
                     }
                 } else {
-                    if (parseInt(code,16) === 0x515a81fa097943dc4f01e32fe178e066b297ee5a00b44fea8c6f7a1cee3b65c140b52e7c0642e82f42e0ebfa17aca7f136aaaccc59ec47f1a62522b680f884bf){
+                    if (parseInt(code, 16) === 0x515a81fa097943dc4f01e32fe178e066b297ee5a00b44fea8c6f7a1cee3b65c140b52e7c0642e82f42e0ebfa17aca7f136aaaccc59ec47f1a62522b680f884bf) {
                         create('druids.obj');
                         $('#info').hide();
                         $('#info2').show();
