@@ -168,7 +168,7 @@
                 var code = hashcode(elemA);
                 console.log(code);
                 if (onedone) {
-                    if (code === 151955800 || code === 2492610648 || code === -1734555272) {
+                    if (code === "#515a81fa097943dc4f01e32fe178e066b297ee5a00b44fea8c6f7a1cee3b65c140b52e7c0642e82f42e0ebfa17aca7f136aaaccc59ec47f1a62522b680f884bf") {
                         create('reveal.obj');
                         var pass = new Audio("pass.wav");
                         pass.play();
@@ -180,7 +180,7 @@
                         fail.play();
                     }
                 } else {
-                    if (code === 34984043 || code === 2044408907 || code === -1919328405) {
+                    if (code === "#515a81fa097943dc4f01e32fe178e066b297ee5a00b44fea8c6f7a1cee3b65c140b52e7c0642e82f42e0ebfa17aca7f136aaaccc59ec47f1a62522b680f884bf"){
                         create('druids.obj');
                         $('#info').hide();
                         $('#info2').show();
@@ -197,7 +197,7 @@
             }
             function hashcode(str) {
                 var shaObj = new jsSHA("SHA3-512", "TEXT");
-                shaObj.update(str + "sodiumchloride");
+                shaObj.update(str.toLowerCase() + "sodiumchloride");
                 var hash = shaObj.getHash("HEX");
                 return hash;
             }
