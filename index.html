@@ -4,6 +4,7 @@
         <meta charset="utf-8">
         <title>CODEHENGE</title>
         <link href="https://fonts.googleapis.com/css?family=Covered+By+Your+Grace" rel="stylesheet" type="text/css">
+        <link rel="icon" href="hengicon.png">
         <style>
             body, input {
                 margin: 0px;
@@ -104,6 +105,7 @@
             light.shadow.camera.bottom = -d;
             light.shadow.camera.far = 1000;
             scene.add(light);
+
             function create(filename) {
                 var btex = new THREE.Texture();
                 var loader = new THREE.ImageLoader(manager);
@@ -116,12 +118,11 @@
                 loader.load(filename, function (object) {
                     object.traverse(function (child) {
                         if (child instanceof THREE.Mesh) {
+                            child.name = filename;
                             child.material.map = btex;
                             child.material.side = THREE.DoubleSide;
                             child.castShadow = true;
                             child.receiveShadow = true;
-                            child.material.visible = false;
-                            child.material.needsUpdate = true;
                         }
                     });
                     object.position.y = 1;
@@ -168,11 +169,10 @@
             function foo(a) {
                 elemA = document.getElementById(a).value;
                 var code = hashcode(elemA);
-                console.log(code);
-                console.log(typeof code);
                 if (onedone) {
                     if (code === 0x997efda565289ee6a5a39ecac6a2014632550dcd5dddbc916090447bd5543a6265bc368d8fd58193063f40653a4fb3fd3ace64ed935d2a8eca52f8cd63151190) {
                         create('reveal.obj');
+                        hide("druids.obj");
                         var pass = new Audio("pass.wav");
                         pass.play();
                         document.getElementById("info2").innerHTML = "congratulations <br/> claim your reward, a runic word";
@@ -185,6 +185,7 @@
                 } else {
                     if (parseInt(code, 16) === 0x515a81fa097943dc4f01e32fe178e066b297ee5a00b44fea8c6f7a1cee3b65c140b52e7c0642e82f42e0ebfa17aca7f136aaaccc59ec47f1a62522b680f884bf) {
                         create('druids.obj');
+                        hide("banners.obj");
                         $('#info').hide();
                         $('#info2').show();
                         onedone = true;
@@ -198,6 +199,13 @@
                     }
                 }
             }
+
+            function hide(filename) {
+                var object = scene.getObjectByName(filename, true);
+                object.material.visible = false;
+                object.material.needsUpdate = true;
+            }
+
             function hashcode(str) {
                 var shaObj = new jsSHA("SHA3-512", "TEXT");
                 shaObj.update(str.toLowerCase() + "sodiumchloride");
