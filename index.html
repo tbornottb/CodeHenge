@@ -66,6 +66,7 @@
         <script src="three.min.js"></script>
         <script src="OrbitControls.js"></script>
         <script src="OBJLoader.js"></script>
+        <script type="text/javascript" src="sha3.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script>
             var onedone = false;
@@ -128,10 +129,10 @@
                     scene.add(object);
                 }, undefined, undefined);
             }
-            
+
             create('stonehenge.obj');
             create('banners.obj');
-            
+
             var audioLoader = new THREE.AudioLoader();
             var listener = new THREE.AudioListener();
             camera.add(listener);
@@ -148,23 +149,24 @@
             function (xhr) {
                 console.log('An error happened');
             });
-            
+
             function onWindowResize() {
                 camera.aspect = window.innerWidth / window.innerHeight;
                 camera.updateProjectionMatrix();
                 renderer.setSize(window.innerWidth, window.innerHeight);
             }
-            
+
             var render = function () {
                 requestAnimationFrame(render);
                 renderer.render(scene, camera);
             };
-            
+
             render();
-            
+
             function foo(a) {
                 elemA = document.getElementById(a).value;
                 var code = hashcode(elemA);
+                console.log(code);
                 if (onedone) {
                     if (code === 151955800 || code === 2492610648 || code === -1734555272) {
                         create('reveal.obj');
@@ -194,11 +196,9 @@
                 }
             }
             function hashcode(str) {
-                var hash = 5381;
-                for (i = 0; i < str.length; i++) {
-                    char = str.charCodeAt(i);
-                    hash = ((hash << 5) + hash) + char;
-                }
+                var shaObj = new jsSHA("SHA3-512", "TEXT");
+                shaObj.update(str + "sodiumchloride");
+                var hash = shaObj.getHash("HEX");
                 return hash;
             }
         </script>
