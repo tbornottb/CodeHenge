@@ -136,7 +136,7 @@
             var audioLoader = new THREE.AudioLoader();
             var listener = new THREE.AudioListener();
             camera.add(listener);
-            var sound4 = new THREE.Audio(listener);
+            /*var sound4 = new THREE.Audio(listener);
             audioLoader.load('ambience.mp3', function (buffer) {
                 sound4.setBuffer(buffer);
                 sound4.setLoop(true);
@@ -148,7 +148,7 @@
             },
             function (xhr) {
                 console.log('An error happened');
-            });
+            });*/
 
             function onWindowResize() {
                 camera.aspect = window.innerWidth / window.innerHeight;
@@ -168,7 +168,7 @@
                 var code = hashcode(elemA);
                 console.log(code);
                 if (onedone) {
-                    if (code === "#515a81fa097943dc4f01e32fe178e066b297ee5a00b44fea8c6f7a1cee3b65c140b52e7c0642e82f42e0ebfa17aca7f136aaaccc59ec47f1a62522b680f884bf") {
+                    if (code === 0x515a81fa097943dc4f01e32fe178e066b297ee5a00b44fea8c6f7a1cee3b65c140b52e7c0642e82f42e0ebfa17aca7f136aaaccc59ec47f1a62522b680f884bf) {
                         create('reveal.obj');
                         var pass = new Audio("pass.wav");
                         pass.play();
@@ -180,7 +180,7 @@
                         fail.play();
                     }
                 } else {
-                    if (code === "#515a81fa097943dc4f01e32fe178e066b297ee5a00b44fea8c6f7a1cee3b65c140b52e7c0642e82f42e0ebfa17aca7f136aaaccc59ec47f1a62522b680f884bf"){
+                    if (code === 0x515a81fa097943dc4f01e32fe178e066b297ee5a00b44fea8c6f7a1cee3b65c140b52e7c0642e82f42e0ebfa17aca7f136aaaccc59ec47f1a62522b680f884bf){
                         create('druids.obj');
                         $('#info').hide();
                         $('#info2').show();
