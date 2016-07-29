@@ -67,7 +67,7 @@
         <script src="OrbitControls.js"></script>
         <script src="OBJLoader.js"></script>
         <script type="text/javascript" src="sha3.js"></script>
-        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script>
             var onedone = false;
             $('#info2').hide();
@@ -167,6 +167,7 @@
                 elemA = document.getElementById(a).value;
                 var code = hashcode(elemA);
                 console.log(code);
+                console.log(typeof code);
                 if (onedone) {
                     if (code === 0x515a81fa097943dc4f01e32fe178e066b297ee5a00b44fea8c6f7a1cee3b65c140b52e7c0642e82f42e0ebfa17aca7f136aaaccc59ec47f1a62522b680f884bf) {
                         create('reveal.obj');
