@@ -3,12 +3,12 @@
     <head>
         <meta charset="utf-8">
         <title>CODEHENGE</title>
-        <link href="https://fonts.googleapis.com/css?family=Covered+By+Your+Grace" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Chelsea+Market" rel="stylesheet" type="text/css">
         <link rel="icon" href="hengicon.png">
         <style>
             body, input {
                 margin: 0px;
-                font-family: 'Covered By Your Grace', serif;
+                font-family: 'Chelsea Market', serif;
             }
             canvas { width: 100%; height: 100%; display: block;}
             #a{
@@ -50,15 +50,14 @@
         </style>
     </head>
     <body>
-        <div id="info">CODEHENGE<br />
-		enter the word hidden in the stones<br />
+        <div id="info">the secret prize will be denied<br />until you find the word the old stones hide<br />
             <form onsubmit="return false;">
                 <input type="text" id="a" value="" maxlength="8"><br>
                 <input type="button" value="Submit" onclick="foo('a');" />
             </form>
         </div>
         <div id="info2">
-		well done <br /> now enter the word formed by the druids<br />
+		one more task - the end's still obstructed <br /> enter the word the druids have constructed<br />
             <form onsubmit="return false;">
                 <input type="text" id="b" value="" maxlength="9"><br>
                 <input type="button" value="Submit" onclick="foo('b');" />
@@ -174,7 +173,7 @@
                         hide("druids.obj");
                         var pass = new Audio("pass.wav");
                         pass.play();
-                        document.getElementById("info2").innerHTML = "congratulations <br/> claim your reward, a runic word";
+                        document.getElementById("info2").innerHTML = "congratulations, claim your reward <br/> a runic inscription of a mystical word";
                     }
                     else {
                         $('#b').val('');
