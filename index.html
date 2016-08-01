@@ -139,19 +139,19 @@
             var audioLoader = new THREE.AudioLoader();
             var listener = new THREE.AudioListener();
             camera.add(listener);
-            /*var sound4 = new THREE.Audio(listener);
-            audioLoader.load('ambience.mp3', function (buffer) {
-            sound4.setBuffer(buffer);
-            sound4.setLoop(true);
-            sound4.setVolume(0.5);
-            sound4.play();
+            var sound = new THREE.Audio(listener);
+            audioLoader.load('ambience.wav', function (buffer) {
+                sound.setBuffer(buffer);
+                sound.setLoop(true);
+                sound.setVolume(0.5);
+                sound.play();
             },
             function (xhr) {
-            console.log((xhr.loaded / xhr.total * 100) + '% loaded');
+                console.log((xhr.loaded / xhr.total * 100) + '% loaded');
             },
             function (xhr) {
-            console.log('An error happened');
-            });*/
+                console.log('An error happened');
+            });
 
             function onWindowResize() {
                 camera.aspect = window.innerWidth / window.innerHeight;
@@ -163,7 +163,6 @@
                 requestAnimationFrame(render);
                 renderer.render(scene, camera);
             };
-
             render();
 
             function foo(a) {
