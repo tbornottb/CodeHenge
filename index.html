@@ -8,7 +8,7 @@
         <style>
             body, input {
                 margin: 0px;
-                font-family: 'Chelsea Market', serif;
+                font-family: 'Chelsea Market';
             }
             canvas { width: 100%; height: 100%; display: block;}
             #a{
@@ -34,14 +34,14 @@
                 letter-spacing: 12px;
             }
             #info {
-                font-family: 'Covered By Your Grace', serif;  
+                font-family: 'Chelsea Market', serif;  
                 font-size: 20pt;      
                 position: absolute;
                 width: 100%;
                 text-align: center;
             }
             #info2 {
-                font-family: 'Covered By Your Grace', serif;   
+                font-family: 'Chelsea Market', serif;   
                 font-size: 20pt;     
                 position: absolute;
                 width: 100%;
@@ -69,147 +69,7 @@
         <script type="text/javascript" src="sha3.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script>
-            var onedone = false;
-            $('#info2').hide();
-            var scene = new THREE.Scene();
-            scene.fog = new THREE.Fog(0xcce0ff, 1000, 5000);
-            var camera = new THREE.PerspectiveCamera(30, window.innerWidth / window.innerHeight, 1, 10000);
-            camera.position.x = 1000;
-            camera.position.y = 0;
-            camera.position.z = 1500;
-            scene.add(camera);
-            var renderer = new THREE.WebGLRenderer();
-            renderer.setSize(window.innerWidth, window.innerHeight);
-            renderer.setClearColor(scene.fog.color);
-            renderer.shadowMap.enabled = true;
-            renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-            document.body.appendChild(renderer.domElement);
-            window.addEventListener('resize', onWindowResize, false);
-            var controls = new THREE.OrbitControls(camera, renderer.domElement);
-            controls.maxPolarAngle = Math.PI * 0.5;
-            controls.minDistance = 1000;
-            controls.maxDistance = 7500;
-            var light = new THREE.HemisphereLight(0xffffbb, 0x080820, 1);
-            scene.add(light);
-            light = new THREE.DirectionalLight(0xdfebff, .6);
-            light.position.set(50, 200, 100);
-            light.position.multiplyScalar(1.3);
-            light.castShadow = true;
-            light.shadow.mapSize.width = 1024;
-            light.shadow.mapSize.height = 1024;
-            var d = 1000;
-            light.shadow.camera.left = -d;
-            light.shadow.camera.right = d;
-            light.shadow.camera.top = d;
-            light.shadow.camera.bottom = -d;
-            light.shadow.camera.far = 1000;
-            scene.add(light);
-
-            function create(filename) {
-                var btex = new THREE.Texture();
-                var loader = new THREE.ImageLoader(manager);
-                loader.load('hengemap.jpg', function (image) {
-                    btex.image = image;
-                    btex.needsUpdate = true;
-                });
-                var manager = new THREE.LoadingManager();
-                var loader = new THREE.OBJLoader(manager);
-                loader.load(filename, function (object) {
-                    object.traverse(function (child) {
-                        if (child instanceof THREE.Mesh) {
-                            child.name = filename;
-                            child.material.map = btex;
-                            child.material.side = THREE.DoubleSide;
-                            child.castShadow = true;
-                            child.receiveShadow = true;
-                        }
-                    });
-                    object.position.y = 1;
-                    object.rotation.x = -Math.PI / 2;
-                    object.rotation.z = 2.25;
-                    object.scale.x = object.scale.y = object.scale.z = 100;
-                    scene.add(object);
-                }, undefined, undefined);
-            }
-
-            create('stonehenge.obj');
-            create('banners.obj');
-
-            var audioLoader = new THREE.AudioLoader();
-            var listener = new THREE.AudioListener();
-            camera.add(listener);
-            var sound = new THREE.Audio(listener);
-            audioLoader.load('ambience.wav', function (buffer) {
-                sound.setBuffer(buffer);
-                sound.setLoop(true);
-                sound.setVolume(0.5);
-                sound.play();
-            },
-            function (xhr) {
-                console.log((xhr.loaded / xhr.total * 100) + '% loaded');
-            },
-            function (xhr) {
-                console.log('An error happened');
-            });
-
-            function onWindowResize() {
-                camera.aspect = window.innerWidth / window.innerHeight;
-                camera.updateProjectionMatrix();
-                renderer.setSize(window.innerWidth, window.innerHeight);
-            }
-
-            var render = function () {
-                requestAnimationFrame(render);
-                renderer.render(scene, camera);
-            };
-            render();
-
-            function foo(a) {
-                elemA = document.getElementById(a).value;
-                var code = hashcode(elemA);
-                if (onedone) {
-                    if (parseInt(code, 16) === 0x997efda565289ee6a5a39ecac6a2014632550dcd5dddbc916090447bd5543a6265bc368d8fd58193063f40653a4fb3fd3ace64ed935d2a8eca52f8cd63151190) {
-                        create('reveal.obj');
-                        hide("druids.obj");
-                        var pass = new Audio("pass.wav");
-                        pass.play();
-                        document.getElementById("info2").innerHTML = "congratulations, claim your reward <br/> a runic inscription of a mystical word";
-                    }
-                    else {
-                        $('#b').val('');
-                        var fail = new Audio("fail.wav");
-                        fail.play();
-                    }
-                } else {
-                    if (parseInt(code, 16) === 0x515a81fa097943dc4f01e32fe178e066b297ee5a00b44fea8c6f7a1cee3b65c140b52e7c0642e82f42e0ebfa17aca7f136aaaccc59ec47f1a62522b680f884bf) {
-                        create('druids.obj');
-                        hide("banners.obj");
-                        $('#info').hide();
-                        $('#info2').show();
-                        onedone = true;
-                        var pass = new Audio("pass.wav");
-                        pass.play();
-                    }
-                    else {
-                        $('#a').val('');
-                        var fail = new Audio("fail.wav");
-                        fail.play();
-                    }
-                }
-            }
-
-            function hide(filename) {
-                var object = scene.getObjectByName(filename, true);
-                object.material.visible = false;
-                object.material.needsUpdate = true;
-            }
-
-            function hashcode(str) {
-                var shaObj = new jsSHA("SHA3-512", "TEXT");
-                shaObj.update(str.toLowerCase() + "sodiumchloride");
-                var hash = shaObj.getHash("HEX");
-                return hash;
-            }
+            function create(e){var a=new THREE.Texture,n=new THREE.ImageLoader(o);n.load("hengemap.jpg",function(e){a.image=e,a.needsUpdate=!0});var o=new THREE.LoadingManager,n=new THREE.OBJLoader(o);n.load(e,function(n){n.traverse(function(n){n instanceof THREE.Mesh&&(n.name=e,n.material.map=a,n.material.side=THREE.DoubleSide,n.castShadow=!0,n.receiveShadow=!0)}),n.position.y=1,n.rotation.x=-Math.PI/2,n.rotation.z=2.25,n.scale.x=n.scale.y=n.scale.z=100,scene.add(n)},void 0,void 0)}function onWindowResize(){camera.aspect=window.innerWidth/window.innerHeight,camera.updateProjectionMatrix(),renderer.setSize(window.innerWidth,window.innerHeight)}function foo(e){elemA=document.getElementById(e).value;var a=hashcode(elemA);if(onedone)if(8.039240864899118e153===parseInt(a,16)){create("reveal.obj"),hide("druids.obj");var n=new Audio("pass.wav");n.play(),document.getElementById("info2").innerHTML="congratulations, claim your reward <br/> a runic inscription of a mystical word"}else{$("#b").val("");var o=new Audio("fail.wav");o.play()}else if(4.260830923179604e153===parseInt(a,16)){create("druids.obj"),hide("banners.obj"),$("#info").hide(),$("#info2").show(),onedone=!0;var n=new Audio("pass.wav");n.play()}else{$("#a").val("");var o=new Audio("fail.wav");o.play()}}function hide(e){var a=scene.getObjectByName(e,!0);a.material.visible=!1,a.material.needsUpdate=!0}function hashcode(e){var a=new jsSHA("SHA3-512","TEXT");a.update(e.toLowerCase()+"sodiumchloride");var n=a.getHash("HEX");return n}var onedone=!1;$("#info2").hide();var scene=new THREE.Scene;scene.fog=new THREE.Fog(13426943,1e3,5e3);var camera=new THREE.PerspectiveCamera(30,window.innerWidth/window.innerHeight,1,1e4);camera.position.x=1e3,camera.position.y=0,camera.position.z=1500,scene.add(camera);var renderer=new THREE.WebGLRenderer;renderer.setSize(window.innerWidth,window.innerHeight),renderer.setClearColor(scene.fog.color),renderer.shadowMap.enabled=!0,renderer.shadowMap.type=THREE.PCFSoftShadowMap,document.body.appendChild(renderer.domElement),window.addEventListener("resize",onWindowResize,!1);var controls=new THREE.OrbitControls(camera,renderer.domElement);controls.maxPolarAngle=.5*Math.PI,controls.minDistance=1e3,controls.maxDistance=7500;var light=new THREE.HemisphereLight(16777147,526368,1);scene.add(light),light=new THREE.DirectionalLight(14674943,.6),light.position.set(50,200,100),light.position.multiplyScalar(1.3),light.castShadow=!0,light.shadow.mapSize.width=1024,light.shadow.mapSize.height=1024;var d=1e3;light.shadow.camera.left=-d,light.shadow.camera.right=d,light.shadow.camera.top=d,light.shadow.camera.bottom=-d,light.shadow.camera.far=1e3,scene.add(light),create("stonehenge.obj"),create("banners.obj");var audioLoader=new THREE.AudioLoader,listener=new THREE.AudioListener;camera.add(listener);var sound=new THREE.Audio(listener);audioLoader.load("ambience.wav",function(e){sound.setBuffer(e),sound.setLoop(!0),sound.setVolume(.5),sound.play()},function(e){console.log(e.loaded/e.total*100+"% loaded")},function(e){console.log("An error happened")});var render=function(){requestAnimationFrame(render),renderer.render(scene,camera)};render();
         </script>
     </body>
 </html>
